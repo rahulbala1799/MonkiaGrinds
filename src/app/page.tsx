@@ -6,6 +6,7 @@ import HeroSection from '@/components/HeroSection'
 import ReviewsSection from '@/components/ReviewsSection'
 import AMASection from '@/components/AMASection'
 import ContactCTA from '@/components/ContactCTA'
+import { featuredReviews } from '@/data/reviews'
 
 const programmes = [
   {
@@ -239,7 +240,7 @@ export default function Home() {
         </div>
       </section>
 
-      <ReviewsSection />
+      <ReviewsSection reviews={featuredReviews} />
       <ContactCTA />
       <AMASection />
     </>

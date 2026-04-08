@@ -1,6 +1,7 @@
 'use client'
 
 import SubjectPageLayout from '@/components/SubjectPageLayout'
+import { ibReviews } from '@/data/reviews'
 
 const features = [
   {
@@ -70,6 +71,7 @@ export default function IBPage() {
       levels="International Baccalaureate"
       goal="Achieve Top IB Scores"
       features={features}
+      reviews={ibReviews}
     />
   )
 }

@@ -1,35 +1,18 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import type { Review } from '@/data/reviews'
 
-const reviews = [
-  {
-    name: 'Sarah M.',
-    role: 'Leaving Cert Student',
-    text: 'Monika helped me go from a H5 to a H2 in Maths. Her concept explanations are incredibly clear and the practice questions really prepared me for the exam.',
-    rating: 5,
-  },
-  {
-    name: 'David K.',
-    role: 'Parent of JC Student',
-    text: 'My son was struggling with Science and Maths. After just a few months with Monika, his confidence and grades improved dramatically. Highly recommend!',
-    rating: 5,
-  },
-  {
-    name: 'Emma O.',
-    role: '6th Class Student',
-    text: 'The Drumcondra prep was amazing. Monika makes Maths fun and easy to understand. I feel so much more confident going into secondary school.',
-    rating: 5,
-  },
-  {
-    name: 'Roisin B.',
-    role: 'LC Biology Student',
-    text: 'The structured learning approach really works. Monika breaks down complex Biology topics into simple, understandable concepts. Got my H1!',
-    rating: 5,
-  },
-]
+interface ReviewsSectionProps {
+  reviews: Review[]
+}
 
-export default function ReviewsSection() {
+export default function ReviewsSection({ reviews }: ReviewsSectionProps) {
+  // Filter out reviews with empty text
+  const displayReviews = reviews.filter((r) => r.text.length > 0)
+
+  if (displayReviews.length === 0) return null
+
   return (
     <section className="section-padding bg-gray-50">
       <div className="max-w-7xl mx-auto">
@@ -50,9 +33,9 @@ export default function ReviewsSection() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {reviews.map((review, index) => (
+          {displayReviews.map((review, index) => (
             <motion.div
-              key={review.name}
+              key={`${review.name}-${index}`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

@@ -6,6 +6,7 @@ import ReviewsSection from './ReviewsSection'
 import AMASection from './AMASection'
 import ContactCTA from './ContactCTA'
 import FeatureCard from './FeatureCard'
+import type { Review } from '@/data/reviews'
 
 interface SubjectInfo {
   icon: React.ReactNode
@@ -23,6 +24,7 @@ interface SubjectPageLayoutProps {
   goal?: string
   features: SubjectInfo[]
   extraContent?: React.ReactNode
+  reviews: Review[]
 }
 
 export default function SubjectPageLayout({
@@ -35,6 +37,7 @@ export default function SubjectPageLayout({
   goal,
   features,
   extraContent,
+  reviews,
 }: SubjectPageLayoutProps) {
   return (
     <>
@@ -122,7 +125,7 @@ export default function SubjectPageLayout({
       {/* Extra Content */}
       {extraContent}
 
-      <ReviewsSection />
+      <ReviewsSection reviews={reviews} />
       <ContactCTA />
       <AMASection />
     </>

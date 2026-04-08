@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import SubjectPageLayout from '@/components/SubjectPageLayout'
+import { primaryReviews } from '@/data/reviews'
 
 const features = [
   {
@@ -169,6 +170,7 @@ export default function PrimaryClassPage() {
       goal="Build Strong Foundations for Secondary School"
       features={features}
       extraContent={drumcondraContent}
+      reviews={primaryReviews}
     />
   )
 }

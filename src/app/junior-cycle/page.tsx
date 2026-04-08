@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import SubjectPageLayout from '@/components/SubjectPageLayout'
+import { juniorCycleReviews } from '@/data/reviews'
 
 const features = [
   {
@@ -171,6 +172,7 @@ export default function JuniorCyclePage() {
       goal="Achieve Higher Merit / Distinction Grades"
       features={features}
       extraContent={cbaContent}
+      reviews={juniorCycleReviews}
     />
   )
 }

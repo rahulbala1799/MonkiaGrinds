@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import HeroSection from '@/components/HeroSection'
 import ReviewsSection from '@/components/ReviewsSection'
+import { featuredReviews } from '@/data/reviews'
 import AMASection from '@/components/AMASection'
 import ContactCTA from '@/components/ContactCTA'
 
@@ -133,7 +134,7 @@ export default function CounsellingPage() {
         </div>
       </section>
 
-      <ReviewsSection />
+      <ReviewsSection reviews={featuredReviews} />
       <AMASection />
     </>
   )

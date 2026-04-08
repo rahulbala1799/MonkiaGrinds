@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import SubjectPageLayout from '@/components/SubjectPageLayout'
+import { leavingCertReviews } from '@/data/reviews'
 
 const features = [
   {
@@ -129,6 +130,7 @@ export default function LeavingCertPage() {
       goal="Achieve H1 / H2 Grades"
       features={features}
       extraContent={extraContent}
+      reviews={leavingCertReviews}
     />
   )
 }
