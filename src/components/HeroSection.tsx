@@ -98,7 +98,7 @@ export default function HeroSection({
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
-        <div className="max-w-3xl">
+        <div className="max-w-3xl text-center md:text-left mx-auto md:mx-0">
           {badge && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -136,7 +136,7 @@ export default function HeroSection({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-6 text-lg text-gray-300/90 leading-relaxed max-w-2xl"
+            className="mt-6 text-lg text-gray-300/90 leading-relaxed max-w-2xl mx-auto md:mx-0"
           >
             {description}
           </motion.p>
@@ -145,7 +145,7 @@ export default function HeroSection({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-10 flex flex-wrap gap-4"
+            className="mt-10 flex flex-wrap justify-center md:justify-start gap-4"
           >
             <Link
               href={ctaHref}

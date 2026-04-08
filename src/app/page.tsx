@@ -104,7 +104,7 @@ export default function Home() {
         <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary-500/5 rounded-full blur-2xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto relative">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center text-center lg:text-left">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}

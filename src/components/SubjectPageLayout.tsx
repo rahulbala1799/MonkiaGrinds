@@ -75,7 +75,7 @@ export default function SubjectPageLayout({
         <div className="absolute bottom-10 left-10 w-12 h-12 md:w-20 md:h-20 border-2 border-gray-100 rounded-2xl rotate-12 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto relative">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center text-center md:text-left">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -102,7 +102,7 @@ export default function SubjectPageLayout({
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="flex flex-wrap gap-3"
+              className="flex flex-wrap justify-center md:justify-start gap-3"
             >
               {subjects.map((subject) => (
                 <div

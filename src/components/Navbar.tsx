@@ -23,14 +23,14 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
+          {/* Logo — always visible */}
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center">
-              <span className="text-white font-heading font-bold text-lg">M</span>
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl gradient-primary flex items-center justify-center flex-shrink-0">
+              <span className="text-white font-heading font-bold text-base sm:text-lg">M</span>
             </div>
-            <div className="hidden sm:block">
-              <span className="font-heading font-bold text-lg text-navy-900">Monika Grinds</span>
-              <span className="font-heading text-xs text-primary-500 block -mt-1">Academy</span>
+            <div>
+              <span className="font-heading font-bold text-sm sm:text-lg text-navy-900 leading-tight block">Monika Grinds</span>
+              <span className="font-heading text-[10px] sm:text-xs text-primary-500 block -mt-0.5">Academy</span>
             </div>
           </Link>
 
@@ -104,7 +104,7 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className={`block px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 ${
+                  className={`block px-4 py-3 rounded-xl text-center text-base font-medium transition-all duration-200 ${
                     pathname === link.href
                       ? 'bg-primary-500 text-white'
                       : 'text-gray-600 hover:bg-primary-50 hover:text-primary-600'
