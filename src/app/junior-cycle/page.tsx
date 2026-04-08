@@ -163,10 +163,13 @@ const cbaContent = (
 export default function JuniorCyclePage() {
   return (
     <SubjectPageLayout
-      heroTitle="Junior Cycle"
+      heroTitle="Junior"
+      heroHighlight="Cycle"
       heroSubtitle="Maths & Science — 1st, 2nd & 3rd Year"
       heroDescription="Achieve Higher Merit and Distinction grades with our structured learning approach. From detailed concept explanations to CBA preparation, we support your child every step of the way."
       heroBadge="Junior Cert Preparation"
+      heroTheme="jc"
+      accentColor="jc"
       subjects={['Maths', 'Science']}
       levels="1st Year, 2nd Year, 3rd Year"
       goal="Achieve Higher Merit / Distinction Grades"

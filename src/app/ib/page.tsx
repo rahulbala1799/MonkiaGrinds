@@ -63,10 +63,13 @@ const features = [
 export default function IBPage() {
   return (
     <SubjectPageLayout
-      heroTitle="IB Programme"
+      heroTitle="IB"
+      heroHighlight="Programme"
       heroSubtitle="Maths & Science — International Baccalaureate"
       heroDescription="Specialised support for IB students with concept-driven learning, exam preparation, and personalised 1:1 classes tailored to the IB curriculum."
       heroBadge="IB Preparation"
+      heroTheme="ib"
+      accentColor="ib"
       subjects={['Maths', 'Science']}
       levels="International Baccalaureate"
       goal="Achieve Top IB Scores"

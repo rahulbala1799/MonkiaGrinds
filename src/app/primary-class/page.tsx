@@ -161,10 +161,13 @@ const drumcondraContent = (
 export default function PrimaryClassPage() {
   return (
     <SubjectPageLayout
-      heroTitle="Primary Class"
+      heroTitle="Primary"
+      heroHighlight="Class"
       heroSubtitle="Maths & Science — 5th & 6th Class"
       heroDescription="A stepping stone to secondary school. Build strong foundations with fun, engaging learning and targeted Drumcondra exam preparation."
       heroBadge="Primary School Grinds"
+      heroTheme="ps"
+      accentColor="ps"
       subjects={['Maths', 'Science']}
       levels="5th Class, 6th Class"
       goal="Build Strong Foundations for Secondary School"

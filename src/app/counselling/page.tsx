@@ -5,7 +5,6 @@ import HeroSection from '@/components/HeroSection'
 import ReviewsSection from '@/components/ReviewsSection'
 import { featuredReviews } from '@/data/reviews'
 import AMASection from '@/components/AMASection'
-import ContactCTA from '@/components/ContactCTA'
 
 const reasons = [
   {
@@ -50,7 +49,8 @@ export default function CounsellingPage() {
   return (
     <>
       <HeroSection
-        title="Academic Counselling"
+        title="Academic"
+        highlightedTitle="Counselling"
         subtitle="Maths & Science — Course Guidance"
         description="Parent or student — still confused or undecided which course to pick up? Book a session with Monika for personalised academic guidance and support."
         badge="Free Consultation Available"
@@ -59,17 +59,20 @@ export default function CounsellingPage() {
       />
 
       {/* Main Content */}
-      <section className="section-padding bg-white">
-        <div className="max-w-7xl mx-auto">
+      <section className="section-padding bg-white pattern-dots relative overflow-hidden">
+        <div className="absolute top-10 right-10 w-24 h-24 border-2 border-primary-100 rounded-full pointer-events-none" />
+        <div className="absolute bottom-10 left-10 w-16 h-16 border-2 border-gold-400/20 rounded-2xl rotate-12 pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <span className="text-primary-500 font-semibold text-sm uppercase tracking-wider">How We Can Help</span>
-            <h2 className="font-heading font-bold text-3xl sm:text-4xl mt-2 text-navy-900">
-              Still Confused or Undecided?
+            <span className="text-primary-500 font-bold text-sm uppercase tracking-wider">How We Can Help</span>
+            <h2 className="font-heading font-extrabold text-3xl sm:text-4xl mt-2 text-navy-900">
+              Still Confused or <span className="text-gradient">Undecided?</span>
             </h2>
             <p className="text-gray-500 mt-3 max-w-2xl mx-auto">
               Making the right academic choices can be overwhelming. Whether you&apos;re a parent
@@ -85,12 +88,12 @@ export default function CounsellingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-gray-50 rounded-2xl p-6 md:p-8 card-hover border border-gray-100"
+                className="bg-gray-50 rounded-2xl p-6 md:p-8 card-hover border border-gray-100 border-l-4 border-l-primary-500"
               >
                 <div className="w-14 h-14 rounded-2xl bg-primary-50 flex items-center justify-center mb-4">
                   {reason.icon}
                 </div>
-                <h3 className="font-heading font-semibold text-lg text-navy-900 mb-2">{reason.title}</h3>
+                <h3 className="font-heading font-bold text-lg text-navy-900 mb-2">{reason.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{reason.description}</p>
               </motion.div>
             ))}
@@ -107,10 +110,15 @@ export default function CounsellingPage() {
             viewport={{ once: true }}
             className="gradient-primary rounded-3xl p-8 md:p-12 text-center text-white relative overflow-hidden"
           >
+            <div className="absolute inset-0 pattern-dots-light pointer-events-none" />
             <div className="absolute -top-20 -right-20 w-60 h-60 bg-white/10 rounded-full blur-2xl" />
             <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-white/5 rounded-full blur-2xl" />
+            <div className="absolute top-8 left-8 w-16 h-16 border border-white/10 rounded-2xl rotate-12 pointer-events-none" />
+
             <div className="relative">
-              <h2 className="font-heading font-bold text-3xl sm:text-4xl">Book a Session</h2>
+              <h2 className="font-heading font-extrabold text-3xl sm:text-4xl">
+                Book a <span className="text-gradient-gold">Session</span>
+              </h2>
               <p className="text-primary-100 mt-4 text-lg max-w-xl mx-auto">
                 Get personalised academic counselling to make the right decisions for your
                 future. No obligation, just honest guidance.
@@ -118,7 +126,7 @@ export default function CounsellingPage() {
               <div className="mt-8 flex flex-wrap justify-center gap-4">
                 <a
                   href="tel:0852401266"
-                  className="bg-white text-primary-600 px-8 py-4 rounded-xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-0.5"
+                  className="bg-white text-primary-600 px-8 py-4 rounded-xl font-bold shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-0.5"
                 >
                   Call: 085 240 1266
                 </a>

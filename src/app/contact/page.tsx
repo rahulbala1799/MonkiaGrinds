@@ -105,14 +105,16 @@ export default function ContactPage() {
   return (
     <>
       {/* Header */}
-      <section className="gradient-hero pt-28 pb-16 px-4">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="gradient-hero pt-28 pb-16 px-4 relative overflow-hidden">
+        <div className="absolute inset-0 pattern-grid-dark pointer-events-none" />
+        <div className="absolute top-20 right-10 w-24 h-24 border border-white/10 rounded-3xl rotate-12 pointer-events-none" />
+        <div className="max-w-4xl mx-auto text-center relative">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="font-heading font-bold text-4xl sm:text-5xl text-white"
+            className="font-heading font-extrabold text-5xl sm:text-6xl text-white"
           >
-            Contact Us
+            Contact <span className="text-gradient-gold">Us</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

@@ -8,14 +8,17 @@ interface ReviewsSectionProps {
 }
 
 export default function ReviewsSection({ reviews }: ReviewsSectionProps) {
-  // Filter out reviews with empty text
   const displayReviews = reviews.filter((r) => r.text.length > 0)
 
   if (displayReviews.length === 0) return null
 
   return (
-    <section className="section-padding bg-gray-50">
-      <div className="max-w-7xl mx-auto">
+    <section className="section-padding bg-gray-50 pattern-dots relative overflow-hidden">
+      {/* Accent shapes */}
+      <div className="absolute top-16 right-8 w-16 h-16 md:w-28 md:h-28 border-2 border-primary-100 rounded-full pointer-events-none" />
+      <div className="absolute bottom-20 left-8 w-10 h-10 md:w-20 md:h-20 border-2 border-gold-400/20 rounded-2xl rotate-45 pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -23,12 +26,12 @@ export default function ReviewsSection({ reviews }: ReviewsSectionProps) {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <span className="text-primary-500 font-semibold text-sm uppercase tracking-wider">Testimonials</span>
-          <h2 className="font-heading font-bold text-3xl sm:text-4xl mt-2 text-navy-900">
-            Reviews & Testimonials
+          <span className="text-primary-500 font-bold text-sm uppercase tracking-wider">Testimonials</span>
+          <h2 className="font-heading font-extrabold text-3xl sm:text-4xl mt-2 text-navy-900">
+            What Parents & Students <span className="text-gradient">Say</span>
           </h2>
           <p className="text-gray-500 mt-3 max-w-2xl mx-auto">
-            See what our students and parents have to say about their experience with Monika Grinds Academy.
+            Real feedback from real families who have experienced Monika Grinds Academy.
           </p>
         </motion.div>
 
@@ -40,13 +43,16 @@ export default function ReviewsSection({ reviews }: ReviewsSectionProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100 card-hover"
+              className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100 border-t-4 border-t-primary-500 card-hover relative"
             >
+              {/* Quote mark */}
+              <div className="absolute top-4 right-6 text-6xl font-serif text-primary-100 leading-none select-none">&rdquo;</div>
+
               <div className="flex gap-1 mb-4">
                 {Array.from({ length: review.rating }).map((_, i) => (
                   <svg
                     key={i}
-                    className="w-5 h-5 text-amber-400"
+                    className="w-5 h-5 text-gold-400"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
@@ -54,10 +60,15 @@ export default function ReviewsSection({ reviews }: ReviewsSectionProps) {
                   </svg>
                 ))}
               </div>
-              <p className="text-gray-600 leading-relaxed mb-4">&ldquo;{review.text}&rdquo;</p>
-              <div>
-                <p className="font-semibold text-navy-900">{review.name}</p>
-                <p className="text-sm text-gray-400">{review.role}</p>
+              <p className="text-gray-600 leading-relaxed mb-5 relative">&ldquo;{review.text}&rdquo;</p>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white font-bold text-sm">
+                  {review.name.charAt(0)}
+                </div>
+                <div>
+                  <p className="font-bold text-navy-900">{review.name}</p>
+                  <p className="text-sm text-gray-400">{review.role}</p>
+                </div>
               </div>
             </motion.div>
           ))}

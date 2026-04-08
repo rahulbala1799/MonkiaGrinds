@@ -121,10 +121,13 @@ const extraContent = (
 export default function LeavingCertPage() {
   return (
     <SubjectPageLayout
-      heroTitle="Leaving Cert"
+      heroTitle="Leaving"
+      heroHighlight="Cert"
       heroSubtitle="Maths, Biology & Chemistry — 4th, 5th & 6th Year"
       heroDescription="Support both theory and practice exams. Boost your grades to achieve H1/H2 with structured learning, detailed concept explanations, and comprehensive exam paper preparation."
       heroBadge="Leaving Cert Preparation"
+      heroTheme="lc"
+      accentColor="lc"
       subjects={['Maths', 'Biology', 'Chemistry']}
       levels="4th Year, 5th Year, 6th Year"
       goal="Achieve H1 / H2 Grades"
