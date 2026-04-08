@@ -25,9 +25,9 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="font-body">
+      <body className="font-body overflow-x-hidden">
         <Navbar />
-        <main>{children}</main>
+        <main className="overflow-x-hidden">{children}</main>
         <Footer />
       </body>
     </html>
