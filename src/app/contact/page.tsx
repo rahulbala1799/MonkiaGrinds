@@ -5,24 +5,20 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 
 const examOptions = [
+  'Primary (Drumcondra)',
   'Junior Cert',
   'Leaving Cert',
-  'Primary (Drumcondra)',
   'IB',
   'Other',
 ]
 
 const subjectOptions = [
-  'Maths (Higher)',
-  'Maths (Ordinary)',
+  'Maths',
+  'Science',
   'Biology',
   'Chemistry',
-  'Science',
-  'French (Higher)',
-  'French (Ordinary)',
-  'Spanish (Higher)',
-  'Spanish (Ordinary)',
-  'Accountancy',
+  'Hindi',
+  'Other',
 ]
 
 const hearAboutOptions = [
@@ -32,18 +28,10 @@ const hearAboutOptions = [
   'Poster',
   'Leaflet',
   'Word of Mouth',
-]
-
-// Stepper config
-const steps = [
-  { id: 1, title: 'Your Details', icon: 'user' },
-  { id: 2, title: 'Student Info', icon: 'student' },
-  { id: 3, title: 'Subjects', icon: 'book' },
-  { id: 4, title: 'Final Step', icon: 'check' },
+  'Other',
 ]
 
 export default function ContactPage() {
-  const [currentStep, setCurrentStep] = useState(1)
   const [formData, setFormData] = useState({
     parentName: '',
     address: '',
@@ -51,12 +39,13 @@ export default function ContactPage() {
     email: '',
     studentName: '',
     exam: '',
+    examOther: '',
     school: '',
     subjects: [] as string[],
     otherSubjects: '',
     hearAbout: [] as string[],
     hearAboutOther: '',
-    paymentMethod: false,
+    message: '',
   })
   const [submitted, setSubmitted] = useState(false)
 
@@ -82,9 +71,6 @@ export default function ContactPage() {
     e.preventDefault()
     setSubmitted(true)
   }
-
-  const nextStep = () => setCurrentStep((s) => Math.min(s + 1, 4))
-  const prevStep = () => setCurrentStep((s) => Math.max(s - 1, 1))
 
   if (submitted) {
     return (
@@ -114,6 +100,10 @@ export default function ContactPage() {
     )
   }
 
+  const showExamOther = formData.exam === 'Other'
+  const showSubjectOther = formData.subjects.includes('Other')
+  const showHearAboutOther = formData.hearAbout.includes('Other')
+
   return (
     <>
       {/* Header */}
@@ -141,7 +131,7 @@ export default function ContactPage() {
 
       {/* Quick Contact Cards */}
       <section className="relative -mt-10 px-4 z-10">
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -191,340 +181,263 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Multi-step Form */}
+      {/* Single-section Form */}
       <section className="px-4 py-10 md:py-16 bg-gray-50 pattern-dots">
-        <div className="max-w-2xl mx-auto">
-          {/* Step Indicator */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="flex items-center justify-between mb-8 px-2"
-          >
-            {steps.map((step, index) => (
-              <div key={step.id} className="flex items-center flex-1">
-                <div className="flex flex-col items-center">
-                  <div
-                    className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 ${
-                      currentStep >= step.id
-                        ? 'gradient-primary text-white shadow-lg shadow-primary-500/25'
-                        : 'bg-white border-2 border-gray-200 text-gray-400'
-                    }`}
-                  >
-                    {currentStep > step.id ? (
-                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                      </svg>
-                    ) : (
-                      step.id
-                    )}
-                  </div>
-                  <span className={`text-[11px] mt-1.5 font-semibold hidden sm:block ${currentStep >= step.id ? 'text-primary-600' : 'text-gray-400'}`}>
-                    {step.title}
-                  </span>
-                </div>
-                {index < steps.length - 1 && (
-                  <div className={`flex-1 h-0.5 mx-2 rounded-full transition-colors duration-300 ${currentStep > step.id ? 'bg-primary-500' : 'bg-gray-200'}`} />
-                )}
-              </div>
-            ))}
-          </motion.div>
-
-          {/* Form Card */}
+        <div className="max-w-3xl mx-auto">
           <motion.form
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.35 }}
+            transition={{ delay: 0.3 }}
             onSubmit={handleSubmit}
             className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden"
           >
-            <div className="p-6 sm:p-8">
-              {/* Step 1: Parent Details */}
-              {currentStep === 1 && (
-                <motion.div
-                  key="step1"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                >
-                  <h2 className="font-heading font-extrabold text-xl text-navy-900 mb-1">Your Details</h2>
-                  <p className="text-gray-400 text-sm mb-6">Tell us about yourself so we can get in touch.</p>
-
-                  <div className="space-y-4">
-                    <div>
-                      <label className="block text-sm font-bold text-gray-700 mb-1.5">Parent Name</label>
-                      <input
-                        type="text"
-                        value={formData.parentName}
-                        onChange={(e) => setFormData({ ...formData, parentName: e.target.value })}
-                        className="w-full px-4 py-3.5 rounded-2xl border border-gray-200 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 outline-none transition-all bg-gray-50 text-navy-900 placeholder:text-gray-300"
-                        placeholder="John Smith"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-bold text-gray-700 mb-1.5">Phone Number</label>
-                      <input
-                        type="tel"
-                        value={formData.phoneNumber}
-                        onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
-                        className="w-full px-4 py-3.5 rounded-2xl border border-gray-200 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 outline-none transition-all bg-gray-50 text-navy-900 placeholder:text-gray-300"
-                        placeholder="085 XXX XXXX"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-bold text-gray-700 mb-1.5">Email</label>
-                      <input
-                        type="email"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full px-4 py-3.5 rounded-2xl border border-gray-200 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 outline-none transition-all bg-gray-50 text-navy-900 placeholder:text-gray-300"
-                        placeholder="you@example.com"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-bold text-gray-700 mb-1.5">Address</label>
-                      <input
-                        type="text"
-                        value={formData.address}
-                        onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                        className="w-full px-4 py-3.5 rounded-2xl border border-gray-200 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 outline-none transition-all bg-gray-50 text-navy-900 placeholder:text-gray-300"
-                        placeholder="Dublin, Ireland"
-                      />
-                    </div>
+            <div className="p-6 sm:p-10 space-y-10">
+              {/* Your Details */}
+              <div>
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center flex-shrink-0 shadow-lg shadow-primary-500/25">
+                    <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
                   </div>
-                </motion.div>
-              )}
-
-              {/* Step 2: Student Info */}
-              {currentStep === 2 && (
-                <motion.div
-                  key="step2"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                >
-                  <h2 className="font-heading font-extrabold text-xl text-navy-900 mb-1">Student Info</h2>
-                  <p className="text-gray-400 text-sm mb-6">Tell us about the student and their school.</p>
-
-                  <div className="space-y-4">
-                    <div>
-                      <label className="block text-sm font-bold text-gray-700 mb-1.5">Student Name</label>
-                      <input
-                        type="text"
-                        value={formData.studentName}
-                        onChange={(e) => setFormData({ ...formData, studentName: e.target.value })}
-                        className="w-full px-4 py-3.5 rounded-2xl border border-gray-200 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 outline-none transition-all bg-gray-50 text-navy-900 placeholder:text-gray-300"
-                        placeholder="Student's full name"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-bold text-gray-700 mb-1.5">
-                        Which exam are you preparing for? <span className="text-red-500">*</span>
-                      </label>
-                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                        {examOptions.map((opt) => (
-                          <button
-                            key={opt}
-                            type="button"
-                            onClick={() => setFormData({ ...formData, exam: opt })}
-                            className={`px-4 py-3 rounded-2xl text-sm font-bold transition-all duration-200 ${
-                              formData.exam === opt
-                                ? 'gradient-primary text-white shadow-lg shadow-primary-500/25'
-                                : 'bg-gray-50 border border-gray-200 text-gray-600 hover:border-primary-300 hover:bg-primary-50'
-                            }`}
-                          >
-                            {opt}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-bold text-gray-700 mb-1.5">School Name</label>
-                      <input
-                        type="text"
-                        value={formData.school}
-                        onChange={(e) => setFormData({ ...formData, school: e.target.value })}
-                        className="w-full px-4 py-3.5 rounded-2xl border border-gray-200 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 outline-none transition-all bg-gray-50 text-navy-900 placeholder:text-gray-300"
-                        placeholder="What school do they attend?"
-                      />
-                    </div>
+                  <div>
+                    <h2 className="font-heading font-extrabold text-lg text-navy-900">Your Details</h2>
+                    <p className="text-gray-400 text-xs">So we can get in touch with you.</p>
                   </div>
-                </motion.div>
-              )}
+                </div>
 
-              {/* Step 3: Subjects */}
-              {currentStep === 3 && (
-                <motion.div
-                  key="step3"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                >
-                  <h2 className="font-heading font-extrabold text-xl text-navy-900 mb-1">Choose Subjects</h2>
-                  <p className="text-gray-400 text-sm mb-6">Select all subjects you need grinds for.</p>
-
-                  <div className="space-y-5">
-                    <div>
-                      <label className="block text-sm font-bold text-gray-700 mb-3">Subjects</label>
-                      <div className="grid grid-cols-2 gap-2">
-                        {subjectOptions.map((subject) => (
-                          <button
-                            key={subject}
-                            type="button"
-                            onClick={() => handleSubjectToggle(subject)}
-                            className={`px-4 py-3 rounded-2xl text-sm font-bold transition-all duration-200 text-left ${
-                              formData.subjects.includes(subject)
-                                ? 'gradient-primary text-white shadow-lg shadow-primary-500/25'
-                                : 'bg-gray-50 border border-gray-200 text-gray-600 hover:border-primary-300 hover:bg-primary-50'
-                            }`}
-                          >
-                            {formData.subjects.includes(subject) && (
-                              <svg className="w-4 h-4 inline mr-1.5 -mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                              </svg>
-                            )}
-                            {subject}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-bold text-gray-700 mb-1.5">Other Subjects</label>
-                      <input
-                        type="text"
-                        value={formData.otherSubjects}
-                        onChange={(e) => setFormData({ ...formData, otherSubjects: e.target.value })}
-                        className="w-full px-4 py-3.5 rounded-2xl border border-gray-200 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 outline-none transition-all bg-gray-50 text-navy-900 placeholder:text-gray-300"
-                        placeholder="Any subjects not listed above"
-                      />
-                    </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-gray-600 mb-1.5 uppercase tracking-wider">Parent Name</label>
+                    <input
+                      type="text"
+                      value={formData.parentName}
+                      onChange={(e) => setFormData({ ...formData, parentName: e.target.value })}
+                      className="w-full px-4 py-3.5 rounded-2xl border border-gray-200 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 outline-none transition-all bg-gray-50 text-navy-900 placeholder:text-gray-300"
+                      placeholder="John Smith"
+                    />
                   </div>
-                </motion.div>
-              )}
+                  <div>
+                    <label className="block text-xs font-bold text-gray-600 mb-1.5 uppercase tracking-wider">Phone Number</label>
+                    <input
+                      type="tel"
+                      value={formData.phoneNumber}
+                      onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
+                      className="w-full px-4 py-3.5 rounded-2xl border border-gray-200 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 outline-none transition-all bg-gray-50 text-navy-900 placeholder:text-gray-300"
+                      placeholder="085 XXX XXXX"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-gray-600 mb-1.5 uppercase tracking-wider">Email</label>
+                    <input
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full px-4 py-3.5 rounded-2xl border border-gray-200 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 outline-none transition-all bg-gray-50 text-navy-900 placeholder:text-gray-300"
+                      placeholder="you@example.com"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-gray-600 mb-1.5 uppercase tracking-wider">Address</label>
+                    <input
+                      type="text"
+                      value={formData.address}
+                      onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                      className="w-full px-4 py-3.5 rounded-2xl border border-gray-200 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 outline-none transition-all bg-gray-50 text-navy-900 placeholder:text-gray-300"
+                      placeholder="Dublin, Ireland"
+                    />
+                  </div>
+                </div>
+              </div>
 
-              {/* Step 4: Final */}
-              {currentStep === 4 && (
-                <motion.div
-                  key="step4"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                >
-                  <h2 className="font-heading font-extrabold text-xl text-navy-900 mb-1">Almost Done</h2>
-                  <p className="text-gray-400 text-sm mb-6">Just a couple more things and you&apos;re all set.</p>
+              <div className="border-t border-gray-100" />
 
-                  <div className="space-y-5">
-                    <div>
-                      <label className="block text-sm font-bold text-gray-700 mb-3">How did you find us?</label>
-                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                        {hearAboutOptions.map((option) => (
-                          <button
-                            key={option}
-                            type="button"
-                            onClick={() => handleHearAboutToggle(option)}
-                            className={`px-4 py-3 rounded-2xl text-sm font-bold transition-all duration-200 ${
-                              formData.hearAbout.includes(option)
-                                ? 'gradient-primary text-white shadow-lg shadow-primary-500/25'
-                                : 'bg-gray-50 border border-gray-200 text-gray-600 hover:border-primary-300 hover:bg-primary-50'
-                            }`}
-                          >
-                            {option}
-                          </button>
-                        ))}
-                      </div>
+              {/* Student Info */}
+              <div>
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center flex-shrink-0 shadow-lg shadow-primary-500/25">
+                    <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h2 className="font-heading font-extrabold text-lg text-navy-900">Student Info</h2>
+                    <p className="text-gray-400 text-xs">Tell us about the student and their level.</p>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+                  <div>
+                    <label className="block text-xs font-bold text-gray-600 mb-1.5 uppercase tracking-wider">Student Name</label>
+                    <input
+                      type="text"
+                      value={formData.studentName}
+                      onChange={(e) => setFormData({ ...formData, studentName: e.target.value })}
+                      className="w-full px-4 py-3.5 rounded-2xl border border-gray-200 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 outline-none transition-all bg-gray-50 text-navy-900 placeholder:text-gray-300"
+                      placeholder="Student's full name"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-gray-600 mb-1.5 uppercase tracking-wider">School Name</label>
+                    <input
+                      type="text"
+                      value={formData.school}
+                      onChange={(e) => setFormData({ ...formData, school: e.target.value })}
+                      className="w-full px-4 py-3.5 rounded-2xl border border-gray-200 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 outline-none transition-all bg-gray-50 text-navy-900 placeholder:text-gray-300"
+                      placeholder="What school do they attend?"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-gray-600 mb-3 uppercase tracking-wider">Which level?</label>
+                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                    {examOptions.map((opt) => (
+                      <button
+                        key={opt}
+                        type="button"
+                        onClick={() => setFormData({ ...formData, exam: opt })}
+                        className={`px-3 py-3 rounded-2xl text-sm font-bold transition-all duration-200 ${
+                          formData.exam === opt
+                            ? 'gradient-primary text-white shadow-lg shadow-primary-500/25'
+                            : 'bg-gray-50 border border-gray-200 text-gray-600 hover:border-primary-300 hover:bg-primary-50'
+                        }`}
+                      >
+                        {opt}
+                      </button>
+                    ))}
+                  </div>
+                  {showExamOther && (
+                    <input
+                      type="text"
+                      value={formData.examOther}
+                      onChange={(e) => setFormData({ ...formData, examOther: e.target.value })}
+                      className="w-full mt-3 px-4 py-3.5 rounded-2xl border border-gray-200 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 outline-none transition-all bg-gray-50 text-navy-900 placeholder:text-gray-300"
+                      placeholder="Please specify the level"
+                    />
+                  )}
+                </div>
+              </div>
+
+              <div className="border-t border-gray-100" />
+
+              {/* Subjects */}
+              <div>
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center flex-shrink-0 shadow-lg shadow-primary-500/25">
+                    <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h2 className="font-heading font-extrabold text-lg text-navy-900">Subjects</h2>
+                    <p className="text-gray-400 text-xs">Select all subjects you need grinds for.</p>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                  {subjectOptions.map((subject) => (
+                    <button
+                      key={subject}
+                      type="button"
+                      onClick={() => handleSubjectToggle(subject)}
+                      className={`px-4 py-3 rounded-2xl text-sm font-bold transition-all duration-200 ${
+                        formData.subjects.includes(subject)
+                          ? 'gradient-primary text-white shadow-lg shadow-primary-500/25'
+                          : 'bg-gray-50 border border-gray-200 text-gray-600 hover:border-primary-300 hover:bg-primary-50'
+                      }`}
+                    >
+                      {formData.subjects.includes(subject) && (
+                        <svg className="w-4 h-4 inline mr-1.5 -mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                        </svg>
+                      )}
+                      {subject}
+                    </button>
+                  ))}
+                </div>
+                {showSubjectOther && (
+                  <input
+                    type="text"
+                    value={formData.otherSubjects}
+                    onChange={(e) => setFormData({ ...formData, otherSubjects: e.target.value })}
+                    className="w-full mt-3 px-4 py-3.5 rounded-2xl border border-gray-200 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 outline-none transition-all bg-gray-50 text-navy-900 placeholder:text-gray-300"
+                    placeholder="Please specify other subject(s)"
+                  />
+                )}
+              </div>
+
+              <div className="border-t border-gray-100" />
+
+              {/* Message + Hear About */}
+              <div>
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center flex-shrink-0 shadow-lg shadow-primary-500/25">
+                    <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h2 className="font-heading font-extrabold text-lg text-navy-900">A Few More Details</h2>
+                    <p className="text-gray-400 text-xs">Anything else we should know?</p>
+                  </div>
+                </div>
+
+                <div className="space-y-5">
+                  <div>
+                    <label className="block text-xs font-bold text-gray-600 mb-1.5 uppercase tracking-wider">Message (Optional)</label>
+                    <textarea
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      rows={3}
+                      className="w-full px-4 py-3.5 rounded-2xl border border-gray-200 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 outline-none transition-all bg-gray-50 text-navy-900 placeholder:text-gray-300 resize-none"
+                      placeholder="Any specific goals, challenges, or preferences..."
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-gray-600 mb-3 uppercase tracking-wider">How did you find us?</label>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                      {hearAboutOptions.map((option) => (
+                        <button
+                          key={option}
+                          type="button"
+                          onClick={() => handleHearAboutToggle(option)}
+                          className={`px-3 py-3 rounded-2xl text-sm font-bold transition-all duration-200 ${
+                            formData.hearAbout.includes(option)
+                              ? 'gradient-primary text-white shadow-lg shadow-primary-500/25'
+                              : 'bg-gray-50 border border-gray-200 text-gray-600 hover:border-primary-300 hover:bg-primary-50'
+                          }`}
+                        >
+                          {option}
+                        </button>
+                      ))}
+                    </div>
+                    {showHearAboutOther && (
                       <input
                         type="text"
                         value={formData.hearAboutOther}
                         onChange={(e) => setFormData({ ...formData, hearAboutOther: e.target.value })}
                         className="w-full mt-3 px-4 py-3.5 rounded-2xl border border-gray-200 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 outline-none transition-all bg-gray-50 text-navy-900 placeholder:text-gray-300"
-                        placeholder="Other (please specify)"
+                        placeholder="Please specify"
                       />
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-bold text-gray-700 mb-3">Payment</label>
-                      <button
-                        type="button"
-                        onClick={() => setFormData({ ...formData, paymentMethod: !formData.paymentMethod })}
-                        className={`flex items-center gap-3 w-full px-4 py-3.5 rounded-2xl text-sm font-bold transition-all duration-200 ${
-                          formData.paymentMethod
-                            ? 'bg-primary-50 border-2 border-primary-500 text-primary-700'
-                            : 'bg-gray-50 border border-gray-200 text-gray-600 hover:border-primary-300'
-                        }`}
-                      >
-                        <div className={`w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0 ${formData.paymentMethod ? 'bg-primary-500' : 'border-2 border-gray-300'}`}>
-                          {formData.paymentMethod && (
-                            <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                            </svg>
-                          )}
-                        </div>
-                        Pay via website
-                      </button>
-                    </div>
-
-                    {/* Summary */}
-                    <div className="bg-gray-50 rounded-2xl p-5 border border-gray-100">
-                      <h3 className="font-bold text-sm text-navy-900 mb-3">Summary</h3>
-                      <div className="space-y-2 text-sm">
-                        {formData.parentName && (
-                          <div className="flex justify-between">
-                            <span className="text-gray-400">Parent</span>
-                            <span className="font-semibold text-navy-900">{formData.parentName}</span>
-                          </div>
-                        )}
-                        {formData.studentName && (
-                          <div className="flex justify-between">
-                            <span className="text-gray-400">Student</span>
-                            <span className="font-semibold text-navy-900">{formData.studentName}</span>
-                          </div>
-                        )}
-                        {formData.exam && (
-                          <div className="flex justify-between">
-                            <span className="text-gray-400">Exam</span>
-                            <span className="font-semibold text-navy-900">{formData.exam}</span>
-                          </div>
-                        )}
-                        {formData.subjects.length > 0 && (
-                          <div className="flex justify-between gap-4">
-                            <span className="text-gray-400 flex-shrink-0">Subjects</span>
-                            <span className="font-semibold text-navy-900 text-right">{formData.subjects.join(', ')}</span>
-                          </div>
-                        )}
-                      </div>
-                    </div>
+                    )}
                   </div>
-                </motion.div>
-              )}
+                </div>
+              </div>
             </div>
 
-            {/* Navigation Buttons */}
-            <div className="px-6 sm:px-8 pb-6 sm:pb-8 flex gap-3">
-              {currentStep > 1 && (
-                <button
-                  type="button"
-                  onClick={prevStep}
-                  className="flex-1 py-3.5 rounded-2xl font-bold text-gray-600 bg-gray-100 hover:bg-gray-200 transition-colors"
-                >
-                  Back
-                </button>
-              )}
-              {currentStep < 4 ? (
-                <button
-                  type="button"
-                  onClick={nextStep}
-                  className="flex-1 py-3.5 rounded-2xl font-bold text-white gradient-primary shadow-lg shadow-primary-500/25 hover:shadow-xl transition-all hover:-translate-y-0.5"
-                >
-                  Continue
-                </button>
-              ) : (
-                <button
-                  type="submit"
-                  className="flex-1 py-3.5 rounded-2xl font-bold text-white gradient-primary shadow-lg shadow-primary-500/25 hover:shadow-xl transition-all hover:-translate-y-0.5"
-                >
-                  Submit Enquiry
-                </button>
-              )}
+            {/* Submit */}
+            <div className="px-6 sm:px-10 pb-6 sm:pb-10">
+              <button
+                type="submit"
+                className="w-full py-4 rounded-2xl font-bold text-white gradient-primary shadow-lg shadow-primary-500/25 hover:shadow-xl transition-all hover:-translate-y-0.5 text-base"
+              >
+                Submit Enquiry
+              </button>
+              <p className="text-center text-gray-400 text-xs mt-4">
+                Monika will get back to you as soon as possible.
+              </p>
             </div>
           </motion.form>
         </div>
