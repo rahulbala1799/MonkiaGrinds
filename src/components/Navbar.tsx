@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const navLinks = [
-  { href: '/', label: 'About' },
+  { href: '/', label: 'Home' },
   { href: '/junior-cycle', label: 'Junior Cycle' },
   { href: '/leaving-cert', label: 'Leaving Cert' },
   { href: '/primary-class', label: 'Primary Class' },

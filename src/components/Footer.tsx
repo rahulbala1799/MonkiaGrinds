@@ -26,7 +26,7 @@ export default function Footer() {
             <h3 className="font-heading font-bold text-lg mb-4">Quick Links</h3>
             <ul className="space-y-2.5">
               {[
-                { href: '/', label: 'About' },
+                { href: '/', label: 'Home' },
                 { href: '/junior-cycle', label: 'Junior Cycle' },
                 { href: '/leaving-cert', label: 'Leaving Cert' },
                 { href: '/primary-class', label: 'Primary Class' },
