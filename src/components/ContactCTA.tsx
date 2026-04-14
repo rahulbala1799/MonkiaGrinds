@@ -30,7 +30,7 @@ export default function ContactCTA() {
               Ready to <span className="text-gradient-gold">Boost</span> Your Grades?
             </h2>
             <p className="text-primary-100 mt-5 text-lg max-w-2xl mx-auto">
-              Join Monika Grinds Academy and experience personalised 1:1 learning that delivers results.
+              Join Monika Grinds Academy and experience personalised learning that delivers results.
               Boost your grades by at least 20%.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">

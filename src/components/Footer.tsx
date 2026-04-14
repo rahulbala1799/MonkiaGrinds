@@ -9,7 +9,7 @@ export default function Footer() {
           <div className="text-center md:text-left">
             <div className="flex items-center gap-2 mb-4 justify-center md:justify-start">
               <div className="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center">
-                <span className="text-white font-heading font-bold text-lg">M</span>
+                <span className="text-white font-heading font-bold text-[10px] tracking-tight">MGA</span>
               </div>
               <div>
                 <span className="font-heading font-bold text-lg">Monika Grinds</span>
@@ -17,7 +17,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs mx-auto md:mx-0">
-              Success of Student is our Priority. Expert Maths & Science grinds across all levels of the Irish curriculum.
+              Success of Student is our Priority. Expert Maths & Science grinds across all levels.
             </p>
           </div>
 

@@ -53,7 +53,7 @@ const programmes = [
 
 const stats = [
   { value: '20%+', label: 'Grade Improvement' },
-  { value: '1:1', label: 'Personal Classes' },
+  { value: 'All', label: 'Levels Covered' },
   { value: '5+', label: 'Subjects Offered' },
   { value: '100%', label: 'Dedication' },
 ]
@@ -64,8 +64,8 @@ export default function Home() {
       <HeroSection
         title="Monika Grinds"
         highlightedTitle="Academy"
-        subtitle="Maths & Science Grinds — Irish Curriculum"
-        description="Success of student is our priority. Expert 1:1 grinds for Primary, Junior Cycle, Leaving Cert and IB students. Boost your grades by at least 20% with personalised attention and structured learning."
+        subtitle="Maths & Science Grinds — All Levels"
+        description="Success of student is our priority. Expert grinds for Primary, Junior Cycle, Leaving Cert and IB students. Boost your grades by at least 20% with personalised attention and structured learning."
         badge="Enrolling Now for All Levels"
         ctaText="Get Started"
         ctaHref="/contact"
@@ -123,7 +123,7 @@ export default function Home() {
                 </p>
                 <p>
                   Whether your child is starting primary school, preparing for the Junior Cert, or
-                  aiming for top Leaving Cert grades, we provide structured 1:1 classes tailored to
+                  aiming for top Leaving Cert grades, we provide structured classes tailored to
                   their individual learning needs.
                 </p>
                 <p>
@@ -144,7 +144,7 @@ export default function Home() {
                 { title: 'Detailed Concepts', text: 'Clear explanations that make complex topics simple', color: 'border-l-jc-500 bg-jc-50/50' },
                 { title: 'Practice Questions', text: 'Extensive exam-style practice for confidence', color: 'border-l-lc-500 bg-lc-50/50' },
                 { title: 'Exam Papers', text: 'Work through real past papers for exam readiness', color: 'border-l-ps-500 bg-ps-50/50' },
-                { title: '1:1 Attention', text: 'Personalised classes focused on your needs', color: 'border-l-ib-500 bg-ib-50/50' },
+                { title: 'Personal Attention', text: 'Personalised classes focused on your needs', color: 'border-l-ib-500 bg-ib-50/50' },
               ].map((item, index) => (
                 <motion.div
                   key={item.title}
@@ -231,34 +231,6 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Hindi Classes */}
-      <section className="section-padding bg-gray-50 relative overflow-hidden">
-        <div className="absolute top-10 right-10 w-20 h-20 border-2 border-gray-200 rounded-2xl rotate-12 pointer-events-none" />
-
-        <div className="max-w-4xl mx-auto text-center relative">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <span className="text-primary-500 font-bold text-sm uppercase tracking-wider">Also Available</span>
-            <h2 className="font-heading font-extrabold text-3xl sm:text-4xl mt-2 text-navy-900">
-              Hindi <span className="text-gradient">Classes</span>
-            </h2>
-            <p className="text-gray-500 mt-4 text-lg">
-              We also offer Hindi language classes for both children and adults.
-              Whether you&apos;re a beginner or looking to improve your fluency, get in touch!
-            </p>
-            <Link
-              href="/contact"
-              className="inline-block mt-6 gradient-primary text-white px-8 py-3 rounded-xl font-bold shadow-lg shadow-primary-500/25 hover:shadow-xl transition-all duration-300"
-            >
-              Enquire About Hindi Classes
-            </Link>
-          </motion.div>
         </div>
       </section>
 
