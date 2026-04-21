@@ -237,34 +237,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Hindi Classes */}
-      <section className="section-padding bg-gray-50 relative overflow-hidden">
-        <div className="absolute top-10 right-10 w-20 h-20 border-2 border-gray-200 rounded-2xl rotate-12 pointer-events-none" />
-
-        <div className="max-w-4xl mx-auto text-center relative">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <span className="text-primary-500 font-bold text-sm uppercase tracking-wider">Also Available</span>
-            <h2 className="font-heading font-extrabold text-3xl sm:text-4xl mt-2 text-navy-900">
-              Hindi <span className="text-gradient">Classes</span>
-            </h2>
-            <p className="text-gray-500 mt-4 text-lg">
-              We also offer Hindi language classes for both children and adults.
-              Whether you&apos;re a beginner or looking to improve your fluency, get in touch!
-            </p>
-            <Link
-              href="/contact"
-              className="inline-block mt-6 gradient-primary text-white px-8 py-3 rounded-xl font-bold shadow-lg shadow-primary-500/25 hover:shadow-xl transition-all duration-300"
-            >
-              Enquire About Hindi Classes
-            </Link>
-          </motion.div>
-        </div>
-      </section>
-
       <ReviewsSection reviews={featuredReviews} />
       <ContactCTA />
       <AMASection />
