@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import HeroSection from '@/components/HeroSection'
+import ProfileSection from '@/components/ProfileSection'
 import ReviewsSection from '@/components/ReviewsSection'
 import AMASection from '@/components/AMASection'
 import ContactCTA from '@/components/ContactCTA'
@@ -97,6 +98,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <ProfileSection />
 
       {/* About Section */}
       <section className="section-padding bg-gray-50 pattern-dots relative overflow-hidden">
