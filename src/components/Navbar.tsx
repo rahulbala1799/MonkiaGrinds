@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import LogoMark from '@/components/LogoMark'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -25,9 +26,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo — always visible */}
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl gradient-primary flex items-center justify-center flex-shrink-0">
-              <span className="text-white font-heading font-bold text-base sm:text-lg">M</span>
-            </div>
+            <LogoMark priority className="h-9 w-auto sm:h-10 flex-shrink-0" />
             <div>
               <span className="font-heading font-bold text-sm sm:text-lg text-navy-900 leading-tight block">Monika Grinds</span>
               <span className="font-heading text-[10px] sm:text-xs text-primary-500 block -mt-0.5">Academy</span>

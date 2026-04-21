@@ -8,6 +8,10 @@ export const metadata: Metadata = {
   description:
     'Expert Maths & Science grinds for Primary, Junior Cycle, Leaving Cert and IB students. Boost grades by at least 20%. 1:1 classes with personalised attention.',
   keywords: 'maths grinds, science grinds, leaving cert, junior cycle, primary school, Ireland, tutor, biology, chemistry',
+  icons: {
+    icon: '/logo.jpeg',
+    apple: '/logo.jpeg',
+  },
 }
 
 export default function RootLayout({
