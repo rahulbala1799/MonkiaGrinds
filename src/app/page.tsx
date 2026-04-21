@@ -54,7 +54,7 @@ const programmes = [
 
 const stats = [
   { value: '20%+', label: 'Grade Improvement' },
-  { value: '1:1', label: 'Personal Classes' },
+  { value: '20+', label: 'Years Experience' },
   { value: '5+', label: 'Subjects Offered' },
   { value: '100%', label: 'Dedication' },
 ]
@@ -66,7 +66,7 @@ export default function Home() {
         title="Monika Grinds"
         highlightedTitle="Academy"
         subtitle="Maths & Science Grinds — Irish Curriculum"
-        description="Success of student is our priority. Expert 1:1 grinds for Primary, Junior Cycle, Leaving Cert and IB students. Boost your grades by at least 20% with personalised attention and structured learning."
+        description="Success of student is our priority. Expert grinds for Primary, Junior Cycle, Leaving Cert and IB students. Boost your grades by at least 20% with personalised attention and structured learning."
         badge="Enrolling Now for All Levels"
         ctaText="Get Started"
         ctaHref="/contact"
@@ -126,7 +126,7 @@ export default function Home() {
                 </p>
                 <p>
                   Whether your child is starting primary school, preparing for the Junior Cert, or
-                  aiming for top Leaving Cert grades, we provide structured 1:1 classes tailored to
+                  aiming for top Leaving Cert grades, we provide structured classes tailored to
                   their individual learning needs.
                 </p>
                 <p>
@@ -147,7 +147,7 @@ export default function Home() {
                 { title: 'Detailed Concepts', text: 'Clear explanations that make complex topics simple', color: 'border-l-jc-500 bg-jc-50/50' },
                 { title: 'Practice Questions', text: 'Extensive exam-style practice for confidence', color: 'border-l-lc-500 bg-lc-50/50' },
                 { title: 'Exam Papers', text: 'Work through real past papers for exam readiness', color: 'border-l-ps-500 bg-ps-50/50' },
-                { title: '1:1 Attention', text: 'Personalised classes focused on your needs', color: 'border-l-ib-500 bg-ib-50/50' },
+                { title: 'Personal Attention', text: 'Personalised classes focused on your needs', color: 'border-l-ib-500 bg-ib-50/50' },
               ].map((item, index) => (
                 <motion.div
                   key={item.title}

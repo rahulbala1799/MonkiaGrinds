@@ -6,7 +6,7 @@ import Footer from '@/components/Footer'
 export const metadata: Metadata = {
   title: 'Monika Grinds Academy | Maths & Science Grinds in Ireland',
   description:
-    'Expert Maths & Science grinds for Primary, Junior Cycle, Leaving Cert and IB students. Boost grades by at least 20%. 1:1 classes with personalised attention.',
+    'Expert Maths & Science grinds for Primary, Junior Cycle, Leaving Cert and IB students. Boost grades by at least 20% with personalised attention.',
   keywords: 'maths grinds, science grinds, leaving cert, junior cycle, primary school, Ireland, tutor, biology, chemistry',
   icons: {
     icon: '/logo.png',

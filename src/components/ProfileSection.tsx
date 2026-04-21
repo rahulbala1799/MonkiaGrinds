@@ -82,7 +82,7 @@ export default function ProfileSection() {
                     Founder &amp; lead tutor · Monika Grinds Academy
                   </p>
                   <p className="text-gray-500 text-xs mt-2 leading-relaxed">
-                    Maths, Science &amp; Biology · Irish curriculum · 1:1 grinds
+                    Maths, Science &amp; Biology · Irish curriculum · personalised grinds
                   </p>
                 </div>
               </div>
