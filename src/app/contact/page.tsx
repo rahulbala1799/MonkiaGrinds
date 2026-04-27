@@ -93,7 +93,7 @@ export default function ContactPage() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen flex items-center justify-center px-4 pt-28 bg-gray-50">
+      <div className="min-h-screen flex items-center justify-center px-4 bg-gray-50">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -126,7 +126,7 @@ export default function ContactPage() {
   return (
     <>
       {/* Header */}
-      <section className="gradient-hero pt-28 sm:pt-32 md:pt-40 pb-20 px-4 relative overflow-hidden">
+      <section className="gradient-hero pt-10 pb-20 px-4 relative overflow-hidden">
         <div className="absolute inset-0 pattern-grid-dark pointer-events-none" />
         <div className="absolute top-20 right-10 w-24 h-24 border border-white/10 rounded-3xl rotate-12 pointer-events-none" />
         <div className="max-w-4xl mx-auto text-center relative">

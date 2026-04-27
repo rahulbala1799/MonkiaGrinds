@@ -31,7 +31,7 @@ export default function RootLayout({
       </head>
       <body className="font-body overflow-x-hidden">
         <Navbar />
-        <main className="overflow-x-hidden">{children}</main>
+        <main className="overflow-x-hidden pt-28 sm:pt-32 md:pt-40">{children}</main>
         <Footer />
       </body>
     </html>

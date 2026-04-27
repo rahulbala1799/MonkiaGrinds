@@ -21,12 +21,13 @@ export default function Navbar() {
   const pathname = usePathname()
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-100 overflow-hidden leading-[0]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between leading-normal">
-          {/* Logo — always visible (2× previous scale) */}
-          <Link href="/" className="flex items-center shrink-0" aria-label="Monika Grinds Academy home">
-            <LogoMark priority className="h-28 w-auto sm:h-32 md:h-40 flex-shrink-0" />
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 h-28 sm:h-32 md:h-40">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+        <div className="flex items-center justify-between h-full">
+
+          {/* Logo */}
+          <Link href="/" className="flex items-center h-full py-1" aria-label="Monika Grinds Academy home">
+            <LogoMark priority className="h-full w-auto" />
           </Link>
 
           {/* Desktop Nav */}
@@ -63,21 +64,9 @@ export default function Navbar() {
             aria-label="Toggle menu"
           >
             <div className="w-6 h-5 flex flex-col justify-between">
-              <span
-                className={`w-full h-0.5 bg-navy-900 transition-all duration-300 ${
-                  isOpen ? 'rotate-45 translate-y-2' : ''
-                }`}
-              />
-              <span
-                className={`w-full h-0.5 bg-navy-900 transition-all duration-300 ${
-                  isOpen ? 'opacity-0' : ''
-                }`}
-              />
-              <span
-                className={`w-full h-0.5 bg-navy-900 transition-all duration-300 ${
-                  isOpen ? '-rotate-45 -translate-y-2' : ''
-                }`}
-              />
+              <span className={`w-full h-0.5 bg-navy-900 transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`} />
+              <span className={`w-full h-0.5 bg-navy-900 transition-all duration-300 ${isOpen ? 'opacity-0' : ''}`} />
+              <span className={`w-full h-0.5 bg-navy-900 transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`} />
             </div>
           </button>
         </div>
@@ -91,7 +80,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="lg:hidden bg-white border-b border-gray-100 overflow-hidden"
+            className="lg:hidden bg-white border-b border-gray-200 overflow-hidden"
           >
             <div className="px-4 py-4 space-y-1">
               {navLinks.map((link) => (

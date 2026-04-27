@@ -97,7 +97,7 @@ export default function HeroSection({
         <div className="absolute bottom-1/3 right-1/5 w-4 h-4 bg-gold-400/20 rounded-full" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32 md:pt-40 pb-16">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16">
         <div className="max-w-3xl text-center md:text-left mx-auto md:mx-0">
           {badge && (
             <motion.div
