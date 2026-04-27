@@ -48,6 +48,8 @@ export default function ContactPage() {
     message: '',
   })
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
 
   const handleSubjectToggle = (subject: string) => {
     setFormData((prev) => ({
@@ -67,9 +69,27 @@ export default function ContactPage() {
     }))
   }
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    setSubmitted(true)
+    setSubmitError(null)
+    setSubmitting(true)
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+      const data = (await res.json().catch(() => ({}))) as { error?: string }
+      if (!res.ok) {
+        setSubmitError(data.error || 'Something went wrong. Please try again.')
+        return
+      }
+      setSubmitted(true)
+    } catch {
+      setSubmitError('Network error. Please check your connection and try again.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   if (submitted) {
@@ -215,6 +235,8 @@ export default function ContactPage() {
                       onChange={(e) => setFormData({ ...formData, parentName: e.target.value })}
                       className="w-full px-4 py-3.5 rounded-2xl border border-gray-200 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 outline-none transition-all bg-gray-50 text-navy-900 placeholder:text-gray-300"
                       placeholder="John Smith"
+                      required
+                      autoComplete="name"
                     />
                   </div>
                   <div>
@@ -225,6 +247,8 @@ export default function ContactPage() {
                       onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
                       className="w-full px-4 py-3.5 rounded-2xl border border-gray-200 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 outline-none transition-all bg-gray-50 text-navy-900 placeholder:text-gray-300"
                       placeholder="085 XXX XXXX"
+                      required
+                      autoComplete="tel"
                     />
                   </div>
                   <div>
@@ -235,6 +259,8 @@ export default function ContactPage() {
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full px-4 py-3.5 rounded-2xl border border-gray-200 focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 outline-none transition-all bg-gray-50 text-navy-900 placeholder:text-gray-300"
                       placeholder="you@example.com"
+                      required
+                      autoComplete="email"
                     />
                   </div>
                   <div>
@@ -429,11 +455,17 @@ export default function ContactPage() {
 
             {/* Submit */}
             <div className="px-6 sm:px-10 pb-6 sm:pb-10">
+              {submitError && (
+                <p className="text-sm text-red-600 bg-red-50 border border-red-100 rounded-2xl px-4 py-3 mb-4" role="alert">
+                  {submitError}
+                </p>
+              )}
               <button
                 type="submit"
-                className="w-full py-4 rounded-2xl font-bold text-white gradient-primary shadow-lg shadow-primary-500/25 hover:shadow-xl transition-all hover:-translate-y-0.5 text-base"
+                disabled={submitting}
+                className="w-full py-4 rounded-2xl font-bold text-white gradient-primary shadow-lg shadow-primary-500/25 hover:shadow-xl transition-all hover:-translate-y-0.5 text-base disabled:opacity-60 disabled:hover:translate-y-0"
               >
-                Submit Enquiry
+                {submitting ? 'Sending…' : 'Submit Enquiry'}
               </button>
               <p className="text-center text-gray-400 text-xs mt-4">
                 Monika will get back to you as soon as possible.
