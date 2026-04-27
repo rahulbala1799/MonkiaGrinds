@@ -3,10 +3,16 @@
  * Share the spreadsheet with the service account email (Editor). Enable Google Sheets API in GCP.
  */
 
+/** Vercel / paste sometimes appends a literal \\n or newline to the email — Google then returns invalid_grant. */
+function cleanServiceAccountEmail(raw: string | undefined): string {
+  if (!raw) return ''
+  return raw.trim().replace(/(?:\\n|\r|\n)+$/g, '')
+}
+
 export function isGoogleSheetConfigured(): boolean {
   return Boolean(
     process.env.GOOGLE_SHEET_ID?.trim() &&
-      process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL?.trim() &&
+      cleanServiceAccountEmail(process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL) &&
       process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY?.trim()
   )
 }
@@ -41,10 +47,11 @@ export async function appendContactToGoogleSheet(
   if (!isGoogleSheetConfigured()) return
 
   const { google } = await import('googleapis')
-  const privateKey = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY!.replace(/\\n/g, '\n')
+  const privateKey = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY!.replace(/\\n/g, '\n').trim()
+  const clientEmail = cleanServiceAccountEmail(process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL)
   const auth = new google.auth.GoogleAuth({
     credentials: {
-      client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL!,
+      client_email: clientEmail,
       private_key: privateKey,
     },
     scopes: ['https://www.googleapis.com/auth/spreadsheets'],
