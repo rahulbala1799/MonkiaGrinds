@@ -17,7 +17,6 @@ const subjectOptions = [
   'Science',
   'Biology',
   'Chemistry',
-  'Hindi',
   'Other',
 ]
 
