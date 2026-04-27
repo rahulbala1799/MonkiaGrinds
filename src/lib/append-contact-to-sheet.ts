@@ -49,8 +49,8 @@ export async function appendContactToGoogleSheet(
     },
     scopes: ['https://www.googleapis.com/auth/spreadsheets'],
   })
-  const client = await auth.getClient()
-  const sheets = google.sheets({ version: 'v4', auth: client })
+  // Pass GoogleAuth directly — getClient() return type is not accepted by sheets().auth in strict builds.
+  const sheets = google.sheets({ version: 'v4', auth })
   const spreadsheetId = process.env.GOOGLE_SHEET_ID!.trim()
   const range = process.env.GOOGLE_SHEET_RANGE?.trim() || 'Sheet1!A:K'
 
