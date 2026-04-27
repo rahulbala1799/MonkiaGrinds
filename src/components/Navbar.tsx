@@ -25,12 +25,8 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo — always visible */}
-          <Link href="/" className="flex items-center gap-2">
-            <LogoMark priority className="h-9 w-auto sm:h-10 flex-shrink-0" />
-            <div>
-              <span className="font-heading font-bold text-sm sm:text-lg text-navy-900 leading-tight block">Monika Grinds</span>
-              <span className="font-heading text-[10px] sm:text-xs text-primary-500 block -mt-0.5">Academy</span>
-            </div>
+          <Link href="/" className="flex items-center shrink-0" aria-label="Monika Grinds Academy home">
+            <LogoMark priority className="h-14 w-auto sm:h-16 md:h-20 flex-shrink-0" />
           </Link>
 
           {/* Desktop Nav */}

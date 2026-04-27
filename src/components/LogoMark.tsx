@@ -5,7 +5,7 @@ type LogoMarkProps = {
   priority?: boolean
 }
 
-export default function LogoMark({ className = 'h-9 w-auto sm:h-10', priority = false }: LogoMarkProps) {
+export default function LogoMark({ className = 'h-12 w-auto sm:h-14', priority = false }: LogoMarkProps) {
   return (
     <Image
       src="/logo.png"

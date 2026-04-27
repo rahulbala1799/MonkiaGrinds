@@ -8,12 +8,10 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* Brand */}
           <div className="text-center md:text-left">
-            <div className="flex items-center gap-2 mb-4 justify-center md:justify-start">
-              <LogoMark className="h-10 w-auto flex-shrink-0" />
-              <div>
-                <span className="font-heading font-bold text-lg">Monika Grinds</span>
-                <span className="font-heading text-xs text-primary-400 block -mt-1">Academy</span>
-              </div>
+            <div className="mb-4 flex justify-center md:justify-start">
+              <Link href="/" className="inline-flex" aria-label="Monika Grinds Academy home">
+                <LogoMark className="h-14 w-auto sm:h-16 flex-shrink-0" />
+              </Link>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs mx-auto md:mx-0">
               Success of Student is our Priority. Expert Maths & Science grinds across all levels of the Irish curriculum.
