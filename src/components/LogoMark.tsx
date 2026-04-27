@@ -5,13 +5,13 @@ type LogoMarkProps = {
   priority?: boolean
 }
 
-export default function LogoMark({ className = 'h-12 w-auto sm:h-14', priority = false }: LogoMarkProps) {
+export default function LogoMark({ className = 'h-24 w-auto sm:h-28', priority = false }: LogoMarkProps) {
   return (
     <Image
       src="/logo.png"
       alt="Monika Grinds Academy"
-      width={591}
-      height={236}
+      width={2362}
+      height={945}
       className={`object-contain ${className}`}
       priority={priority}
     />

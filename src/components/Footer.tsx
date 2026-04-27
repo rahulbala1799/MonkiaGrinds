@@ -10,7 +10,7 @@ export default function Footer() {
           <div className="text-center md:text-left">
             <div className="mb-4 flex justify-center md:justify-start">
               <Link href="/" className="inline-flex" aria-label="Monika Grinds Academy home">
-                <LogoMark className="h-14 w-auto sm:h-16 flex-shrink-0" />
+                <LogoMark className="h-28 w-auto sm:h-32 flex-shrink-0" />
               </Link>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs mx-auto md:mx-0">
