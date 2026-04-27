@@ -12,7 +12,7 @@ export default function LogoMark({ className = 'h-24 w-auto sm:h-28', priority =
       alt="Monika Grinds Academy"
       width={2362}
       height={945}
-      className={`object-contain ${className}`}
+      className={`block object-contain ${className}`}
       priority={priority}
     />
   )
