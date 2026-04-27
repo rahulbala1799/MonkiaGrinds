@@ -10,8 +10,8 @@ export default function LogoMark({ className = 'h-9 w-auto sm:h-10', priority = 
     <Image
       src="/logo.png"
       alt="Monika Grinds Academy"
-      width={337}
-      height={300}
+      width={1774}
+      height={887}
       className={`object-contain ${className}`}
       priority={priority}
     />
