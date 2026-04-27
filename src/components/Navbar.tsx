@@ -31,7 +31,7 @@ export default function Navbar() {
             className="absolute left-1/2 -translate-x-1/2 flex items-center z-10 lg:static lg:left-auto lg:translate-x-0"
             aria-label="Monika Grinds Academy home"
           >
-            <LogoMark priority className="h-28 w-auto sm:h-32 md:h-40 flex-shrink-0" />
+            <LogoMark priority className="h-56 w-auto sm:h-32 md:h-40 flex-shrink-0" />
           </Link>
 
           {/* Desktop Nav */}
