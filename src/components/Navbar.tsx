@@ -23,10 +23,14 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 h-14 sm:h-16 md:h-20 overflow-visible">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
-        <div className="flex items-center justify-between h-full">
+        <div className="flex items-center justify-between h-full relative">
 
-          {/* Logo — fixed size, centred so it extends equally above and below the bar */}
-          <Link href="/" className="flex items-center" aria-label="Monika Grinds Academy home">
+          {/* Logo: absolutely centred on mobile, static left on desktop */}
+          <Link
+            href="/"
+            className="absolute left-1/2 -translate-x-1/2 flex items-center z-10 lg:static lg:left-auto lg:translate-x-0"
+            aria-label="Monika Grinds Academy home"
+          >
             <LogoMark priority className="h-28 w-auto sm:h-32 md:h-40 flex-shrink-0" />
           </Link>
 
