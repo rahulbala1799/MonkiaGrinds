@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
 import type { Transporter } from 'nodemailer'
+import { appendContactToGoogleSheet, isGoogleSheetConfigured } from '@/lib/append-contact-to-sheet'
 
 export const runtime = 'nodejs'
 
@@ -53,6 +54,7 @@ export async function GET() {
       contactApi: true,
       method: 'Use POST to submit the form; this GET is for deployment checks only.',
       mailEnvPresent: user && pass,
+      sheetEnvPresent: isGoogleSheetConfigured(),
     },
     { status: 200 }
   )
@@ -237,6 +239,18 @@ export async function POST(request: Request) {
     }
     logErr('smtp_send_fail', { error: message, code: code || undefined, stack })
     return NextResponse.json({ error: 'Could not send your message. Please try again or email us directly.' }, { status: 502 })
+  }
+
+  if (isGoogleSheetConfigured()) {
+    try {
+      await appendContactToGoogleSheet(payload, { examLine, subjectsLine, hearLine })
+      log('sheet_append_ok', {})
+    } catch (sheetErr: unknown) {
+      const msg = sheetErr instanceof Error ? sheetErr.message : String(sheetErr)
+      logErr('sheet_append_fail', { error: msg.slice(0, 500) })
+    }
+  } else {
+    log('sheet_append_skip', { reason: 'not_configured' })
   }
 
   log('request_done_ok', { reqId: reqId ?? '' })
