@@ -108,7 +108,7 @@ export default function ProfileSection() {
                     teaching experience across a range of subjects and levels.
                   </p>
                   <p>
-                    For the past three and a half years, they have been working exclusively with students in Ireland,
+                    For the past three and a half years, we have been working exclusively with students in Ireland,
                     teaching in line with the Irish and IB curriculum and tailoring lessons to suit Irish and IB exam patterns and
                     expectations.
                   </p>
