@@ -82,7 +82,7 @@ export default function ProfileSection() {
                     Founder &amp; lead tutor · Monika Grinds Academy
                   </p>
                   <p className="text-gray-500 text-xs mt-2 leading-relaxed">
-                    Maths, Science &amp; Biology · Irish curriculum · personalised grinds
+                    Maths, Science &amp; Biology · Irish and IB curriculum · personalised grinds
                   </p>
                 </div>
               </div>
@@ -109,7 +109,7 @@ export default function ProfileSection() {
                   </p>
                   <p>
                     For the past three and a half years, they have been working exclusively with students in Ireland,
-                    teaching in line with the Irish curriculum and tailoring lessons to suit Irish exam patterns and
+                    teaching in line with the Irish and IB curriculum and tailoring lessons to suit Irish and IB exam patterns and
                     expectations.
                   </p>
                 </div>

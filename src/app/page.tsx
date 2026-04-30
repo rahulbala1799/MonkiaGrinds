@@ -65,7 +65,7 @@ export default function Home() {
       <HeroSection
         title="Monika Grinds"
         highlightedTitle="Academy"
-        subtitle="Maths & Science Grinds — Irish Curriculum"
+        subtitle="Maths & Science Grinds — Irish and IB Curriculum"
         description="Success of student is our priority. Expert grinds for Primary, Junior Cycle, Leaving Cert and IB students. Boost your grades by at least 20% with personalised attention and structured learning."
         badge="Enrolling Now for All Levels"
         ctaText="Get Started"

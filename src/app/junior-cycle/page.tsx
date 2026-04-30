@@ -82,7 +82,7 @@ const cbaContent = (
               of final exams.
             </p>
             <p>
-              They focus on skills like research, presentation, and creativity across various
+              We focus on skills like research, presentation, and creativity across various
               subjects, resulting in a descriptor (e.g., &ldquo;Above Expectations&rdquo;) on
               the Junior Cycle Profile of Achievement (JCPA).
             </p>

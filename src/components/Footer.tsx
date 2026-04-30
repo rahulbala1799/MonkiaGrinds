@@ -14,7 +14,7 @@ export default function Footer() {
               </Link>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs mx-auto md:mx-0">
-              Success of Student is our Priority. Expert Maths & Science grinds across all levels of the Irish curriculum.
+              Success of Student is our Priority. Expert Maths & Science grinds across all levels of the Irish and IB curriculum.
             </p>
           </div>
 
